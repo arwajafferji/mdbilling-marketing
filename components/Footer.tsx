@@ -11,9 +11,9 @@ export default function Footer() {
             <Image
               src="/logo.png"
               alt="MD Billing Experts"
-              width={480}
-              height={150}
-              className="h-24 w-auto"
+              width={800}
+              height={250}
+              className="h-48 w-auto"
             />
           </div>
           <p className="mt-4 text-sm text-navy-200">

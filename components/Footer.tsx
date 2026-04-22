@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Mail, Phone, MapPin } from "lucide-react";
 
 export default function Footer() {
@@ -6,13 +7,14 @@ export default function Footer() {
     <footer className="bg-navy-800 text-navy-100">
       <div className="container-xl grid gap-10 py-14 md:grid-cols-4">
         <div>
-          <div className="flex items-center gap-2">
-            <div className="flex h-9 w-9 items-center justify-center rounded-full bg-crimson text-white font-bold">
-              MD
-            </div>
-            <span className="font-bold tracking-tight text-white">
-              BILLING EXPERTS
-            </span>
+          <div className="inline-flex rounded-lg bg-white p-3">
+            <Image
+              src="/logo.png"
+              alt="MD Billing Experts"
+              width={200}
+              height={56}
+              className="h-10 w-auto"
+            />
           </div>
           <p className="mt-4 text-sm text-navy-200">
             Houston-based medical billing and revenue cycle management for

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Phone } from "lucide-react";
 
 const nav = [
@@ -11,14 +12,16 @@ const nav = [
 export default function Header() {
   return (
     <header className="sticky top-0 z-40 border-b border-navy-100 bg-white/90 backdrop-blur">
-      <div className="container-xl flex h-16 items-center justify-between">
-        <Link href="/" className="flex items-center gap-2">
-          <div className="flex h-9 w-9 items-center justify-center rounded-full bg-crimson text-white font-bold">
-            MD
-          </div>
-          <span className="font-bold tracking-tight text-navy-800">
-            BILLING EXPERTS
-          </span>
+      <div className="container-xl flex h-20 items-center justify-between">
+        <Link href="/" className="flex items-center" aria-label="MD Billing Experts — Home">
+          <Image
+            src="/logo.png"
+            alt="MD Billing Experts"
+            width={220}
+            height={64}
+            priority
+            className="h-12 w-auto"
+          />
         </Link>
 
         <nav className="hidden items-center gap-8 md:flex">

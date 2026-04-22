@@ -3,6 +3,7 @@ import Image from "next/image";
 import { Phone } from "lucide-react";
 
 const nav = [
+  { label: "Home", href: "/" },
   { label: "Services", href: "/#services" },
   { label: "Specialties", href: "/#specialties" },
   { label: "About", href: "/#about" },

@@ -12,7 +12,7 @@ const nav = [
 export default function Header() {
   return (
     <header className="sticky top-0 z-40 border-b border-navy-100 bg-white/90 backdrop-blur">
-      <div className="container-xl flex h-[336px] items-center justify-between">
+      <div className="container-xl flex h-28 items-center justify-between">
         <Link href="/" className="flex items-center" aria-label="MD Billing Experts — Home">
           <Image
             src="/logo.png"
@@ -20,7 +20,7 @@ export default function Header() {
             width={1000}
             height={300}
             priority
-            className="h-[240px] w-auto md:h-[288px]"
+            className="h-[230px] w-auto"
           />
         </Link>
 

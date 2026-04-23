@@ -1,8 +1,8 @@
 "use client";
 
-import type { Metadata } from "next";
 import { useMemo, useState } from "react";
 import Link from "next/link";
+import { buildRlaDocx } from "./buildRlaDocx";
 
 /**
  * Revenue Leakage Analysis — internal calculator.
@@ -140,12 +140,21 @@ export default function RLACalculator() {
     new Date().toISOString().slice(0, 10),
   );
   const [specialty, setSpecialty] = useState("Internal Medicine");
+  const [customSpecialty, setCustomSpecialty] = useState("");
   const [emr, setEmr] = useState("eClinicalWorks");
   const [claimVolumeBucket, setClaimVolumeBucket] = useState("750–1,500");
   const [firstPassBucket, setFirstPassBucket] = useState("90–95%");
   const [painPoint, setPainPoint] = useState("");
   const [useArLeak, setUseArLeak] = useState(false);
   const [userOverrodeArToggle, setUserOverrodeArToggle] = useState(false);
+
+  // If specialty is "Other" AND the user typed a custom name, use that name
+  // in the report — but keep the math using "Other" defaults (since we don't
+  // have benchmarks for a specialty we've never worked with).
+  const effectiveSpecialty =
+    specialty === "Other" && customSpecialty.trim()
+      ? customSpecialty.trim()
+      : specialty;
 
   const avgReimbursement = SPECIALTY_REIMBURSEMENT[specialty] ?? 110;
   const claimVolume = CLAIM_VOLUME_MIDPOINTS[claimVolumeBucket] ?? 750;
@@ -242,7 +251,7 @@ export default function RLACalculator() {
     return [
       `PRACTICE_NAME: ${practiceName || "[practice name]"}`,
       `FIRST_NAME: ${firstName || "[first name]"}`,
-      `SPECIALTY: ${specialty}`,
+      `SPECIALTY: ${effectiveSpecialty}`,
       `EMR_SYSTEM: ${emr}`,
       `CLAIM_VOLUME: ${claimVolumeBucket}`,
       `FIRST_PASS_RATE: ${firstPassBucket}`,
@@ -267,6 +276,7 @@ export default function RLACalculator() {
     practiceName,
     firstName,
     specialty,
+    effectiveSpecialty,
     emr,
     claimVolumeBucket,
     firstPassBucket,
@@ -286,6 +296,49 @@ export default function RLACalculator() {
     navigator.clipboard.writeText(variablesBlock);
   };
 
+  const [downloading, setDownloading] = useState(false);
+
+  const downloadDocx = async () => {
+    if (downloading) return;
+    setDownloading(true);
+    try {
+      const blob = await buildRlaDocx({
+        practiceName,
+        firstName,
+        specialty: effectiveSpecialty,
+        emr,
+        claimVolumeLabel: claimVolumeBucket,
+        firstPassLabel: firstPassBucket,
+        painPoint,
+        submissionDate,
+        deliveryDate,
+        useArLeak: effectiveUseArLeak,
+        specialtyNotes: SPECIALTY_NOTES[specialty] ?? "",
+        leak1Title,
+        leak1Value,
+        leak2Value: leakUndercoding,
+        leak3Value: leakEligibility,
+        total,
+        low,
+        high,
+      });
+      const safeName = (practiceName || "Practice")
+        .replace(/[^a-z0-9]+/gi, "_")
+        .replace(/^_+|_+$/g, "");
+      const filename = `Revenue_Leakage_Analysis_${safeName}_${submissionDate}.docx`;
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    } finally {
+      setDownloading(false);
+    }
+  };
+
   return (
     <div className="min-h-screen bg-navy-50 py-12">
       <div className="container-xl max-w-5xl">
@@ -298,13 +351,10 @@ export default function RLACalculator() {
               Revenue Leakage Analysis — Calculator
             </h1>
             <p className="mt-2 max-w-2xl text-sm text-navy-600">
-              Plug in what the lead submitted. The three leak estimates + the
-              variables block for the template update live. Paste the
-              variables block into{" "}
-              <code className="rounded bg-white px-1">
-                docs/revenue-leakage-analysis-template.md
-              </code>{" "}
-              or the .docx version. Formulas documented in{" "}
+              Plug in what the lead submitted. Click{" "}
+              <span className="font-semibold">Download report (.docx)</span>{" "}
+              when you're done — it produces a ready-to-send Word doc with
+              every field filled in. Formulas + workflow documented in{" "}
               <code className="rounded bg-white px-1">
                 docs/revenue-leakage-analysis-sop.md
               </code>
@@ -369,6 +419,29 @@ export default function RLACalculator() {
                 disabled
               />
             </div>
+
+            {specialty === "Other" && (
+              <div className="mt-4 rounded-lg border border-crimson/30 bg-crimson/5 p-4">
+                <label className="block">
+                  <span className="text-sm font-medium text-navy-800">
+                    Specialty name (as submitted)
+                  </span>
+                  <input
+                    type="text"
+                    value={customSpecialty}
+                    onChange={(e) => setCustomSpecialty(e.target.value)}
+                    placeholder="e.g. Urology, Dermatology, OB/GYN"
+                    className="mt-1 w-full rounded-lg border border-navy-200 px-3 py-2 text-sm focus:border-navy-800 focus:outline-none"
+                  />
+                </label>
+                <p className="mt-2 text-xs text-navy-500">
+                  This will appear throughout the report instead of "Other."
+                  Math uses default ($110) reimbursement since we don't have
+                  benchmarks for new specialties yet — double-check the Leak
+                  #2 estimate before sending.
+                </p>
+              </div>
+            )}
 
             <label className="mt-4 block">
               <span className="text-sm font-medium text-navy-800">
@@ -467,11 +540,44 @@ export default function RLACalculator() {
               </div>
             </div>
 
-            <div className="rounded-2xl border border-navy-100 bg-white p-6 shadow-sm">
-              <div className="flex items-center justify-between">
-                <h2 className="text-lg font-semibold text-navy-800">
-                  Template variables
-                </h2>
+            {/* Primary action — generate the actual report */}
+            <div className="rounded-2xl border-2 border-crimson/30 bg-gradient-to-br from-white to-crimson/5 p-6 shadow-sm">
+              <h2 className="text-lg font-semibold text-navy-800">
+                Generate report
+              </h2>
+              <p className="mt-1 text-sm text-navy-600">
+                Downloads a fully-populated .docx. Open in Word, give it a
+                30-second read-through, save as PDF, and email it to{" "}
+                {firstName || "the prospect"}.
+              </p>
+              <button
+                onClick={downloadDocx}
+                disabled={downloading || !practiceName}
+                className="mt-4 w-full rounded-lg bg-crimson px-4 py-3 text-sm font-semibold text-white transition hover:bg-crimson-hover disabled:cursor-not-allowed disabled:bg-navy-200"
+              >
+                {downloading
+                  ? "Building report…"
+                  : !practiceName
+                    ? "Enter practice name to enable"
+                    : "Download report (.docx)"}
+              </button>
+              {!practiceName && (
+                <p className="mt-2 text-xs text-navy-500">
+                  Add a practice name at the top of the form so the file has
+                  something to name itself.
+                </p>
+              )}
+            </div>
+
+            {/* Secondary — raw variables block for debugging or manual edits */}
+            <details className="rounded-2xl border border-navy-100 bg-white p-6 shadow-sm">
+              <summary className="cursor-pointer text-sm font-semibold text-navy-800">
+                Show raw variables block (advanced)
+              </summary>
+              <div className="mt-4 flex items-center justify-between">
+                <p className="text-xs text-navy-500">
+                  For when you want to edit the Markdown template by hand.
+                </p>
                 <button
                   onClick={copyVariables}
                   className="rounded-md bg-navy-800 px-3 py-1.5 text-xs font-semibold text-white hover:bg-navy-700"
@@ -479,14 +585,10 @@ export default function RLACalculator() {
                   Copy all
                 </button>
               </div>
-              <p className="mt-1 text-xs text-navy-500">
-                Paste into the template and find-replace{" "}
-                <code>{"{{VARIABLE}}"}</code> placeholders.
-              </p>
               <pre className="mt-3 max-h-96 overflow-auto rounded-md bg-navy-900 p-4 text-xs leading-relaxed text-navy-100">
                 {variablesBlock}
               </pre>
-            </div>
+            </details>
           </section>
         </div>
       </div>

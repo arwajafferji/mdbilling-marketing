@@ -237,7 +237,7 @@ export default function Home() {
               Who we are
             </p>
             <h2 className="mt-3 text-3xl md:text-4xl text-navy-800">
-              Twenty years of Houston practices trusting us with their revenue.
+              Twenty years of Texas practices trusting us with their revenue.
             </h2>
             <p className="mt-4 text-navy-600">
               MD Billing Experts is a privately-owned Houston company founded
@@ -254,7 +254,7 @@ export default function Home() {
           <div className="grid grid-cols-2 gap-4">
             <div className="rounded-xl border border-navy-100 bg-white p-6">
               <div className="text-3xl font-semibold text-navy-800">20+</div>
-              <div className="mt-1 text-sm text-navy-600">Years in Houston</div>
+              <div className="mt-1 text-sm text-navy-600">Years in Texas</div>
             </div>
             <div className="rounded-xl border border-navy-100 bg-white p-6">
               <div className="text-3xl font-semibold text-navy-800">25+</div>

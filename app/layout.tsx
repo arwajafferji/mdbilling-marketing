@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     siteName: "MD Billing Experts",
     title: "MD Billing Experts | Medical Billing Services in Houston, TX",
     description:
-      "95% first-pass acceptance. 5-day claim turnaround. 20+ years serving Houston-area practices.",
+      "95% first-pass acceptance. 5-day claim turnaround. 20+ years serving Texas practices.",
   },
   robots: { index: true, follow: true },
 };

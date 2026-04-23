@@ -3,6 +3,7 @@ import Link from "next/link";
 import { CheckCircle2 } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import SpecialtyField from "./SpecialtyField";
 
 export const metadata: Metadata = {
   title: "Free Revenue Leakage Analysis",
@@ -96,10 +97,7 @@ export default function RevenueLeakagePage() {
                 <Field label="Email" name="email" type="email" required />
                 <Field label="Phone" name="phone" type="tel" required />
 
-                <Select
-                  label="Specialty"
-                  name="specialty"
-                  required
+                <SpecialtyField
                   options={[
                     "Internal Medicine",
                     "Pediatrics",

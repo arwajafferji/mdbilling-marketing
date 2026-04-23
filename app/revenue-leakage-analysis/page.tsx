@@ -108,6 +108,8 @@ export default function RevenueLeakagePage() {
                     "Rehabilitation",
                     "Senior Living",
                     "Pulmonary",
+                    "Geriatrics",
+                    "Nephrology",
                     "Other",
                   ]}
                 />

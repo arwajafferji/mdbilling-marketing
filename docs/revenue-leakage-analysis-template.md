@@ -93,6 +93,8 @@ Based on your {{CLAIM_VOLUME}} monthly claim volume and {{FIRST_PASS_RATE}} firs
 > - **Rehab:** timed vs. untimed codes, 8-minute rule
 > - **Senior Living / SNF:** nursing facility E/M (99307–99310)
 > - **Pulmonary:** PFT interpretation codes (94010–94060)
+> - **Geriatrics:** AWV (G0438/G0439), CCM (99490), Advance Care Planning (99497/99498), Cognitive assessment (99483)
+> - **Nephrology:** MCP dialysis codes (90951–90970), home dialysis training (90989), ESRD-related services, modifier -26 on dialysis
 
 ### Conservative dollar estimate
 
@@ -126,6 +128,38 @@ Most PM systems (including {{EMR_SYSTEM}}) offer real-time eligibility checks vi
 ### Conservative dollar estimate
 
 Capturing even half of eligibility-related denials typically recovers **{{LEAK_3_ESTIMATE}}/year** for a practice at your volume, before considering the labor cost of working those denials retroactively.
+
+---
+
+## Alternate Leak — Aged AR without systematic follow-up
+
+> **Use this leak in place of Leak #1 or #3** when the practice's pain point signals AR problems, "slow payments," or long days-in-AR — not when denials are the core issue.
+
+### What we're seeing
+
+Denials are the *obvious* leak — they come with a reason code. But a more expensive problem at most independent practices is the **silent** one: claims that were submitted cleanly, never got denied, and never got paid either. They just sit in the aging bucket because no one is systematically following up on unpaid claims.
+
+Common causes:
+
+- Claims marked "pended" or "in adjudication" by the payer that never get resolved — needs a follow-up phone call, not a resubmission
+- Secondary-payer billing that never happens after the primary pays
+- Claims that hit the payer's system but were never acknowledged (lost in an EDI hand-off)
+- Patient-responsibility balances that sit uncollected after insurance pays
+- Claims flagged "needs more info" with no owner assigned to follow up
+
+Industry benchmark for healthy days-in-AR is **25–32 days**. Practices without structured AR follow-up commonly sit at **45–60+ days**, which means 1–2 months of revenue is always "out there" instead of in the bank account.
+
+### How to verify this on your end
+
+- Pull an aging report and look at the 60–90 and 90+ day buckets. Industry target: <15% of total AR in 90+.
+- Sample 10 claims from the 90+ bucket. For each, can your team tell you *why* it hasn't paid and what the next action is? If the answer is "I'm not sure" on more than 2 or 3 of them, you have an AR follow-up gap.
+- Check if anyone has a defined weekly or bi-weekly cadence of calling payers on aged claims. If the answer is "when we get around to it," that's the leak.
+
+### Conservative dollar estimate
+
+At {{CLAIM_VOLUME}} monthly claim volume, a reasonable estimate of revenue stuck in — and leaking out of — aged AR is **{{LEAK_AR_ESTIMATE}}/year**. This is revenue that was *earned*, already documented, already submitted — just not being actively chased into the bank account.
+
+*Formula we use: monthly claim volume × 0.10 × avg reimbursement × 0.40 recovery rate × 12 months. Swap in actual numbers per lead.*
 
 ---
 
@@ -169,7 +203,7 @@ No pressure and no obligation. The call is free; if we're not a fit, we'll say s
 
 Houston-based medical billing and revenue cycle management for independent practices across Texas. 20+ years of experience. 25+ active practice partners. HIPAA-compliant. Medicare and Medicaid guidelines followed.
 
-**Specialties we serve:** Internal Medicine · Pediatrics · Cardiology · Hospitalist · Rehabilitation · Senior Living · Pulmonary
+**Specialties we serve:** Internal Medicine · Pediatrics · Cardiology · Hospitalist · Rehabilitation · Senior Living · Pulmonary · Geriatrics · Nephrology
 
 ---
 

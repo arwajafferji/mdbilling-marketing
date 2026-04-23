@@ -14,6 +14,8 @@ import {
   Activity,
   Users,
   Wind,
+  UserCog,
+  Droplets,
 } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -67,6 +69,8 @@ const specialties = [
   { icon: Activity, name: "Rehabilitation" },
   { icon: Users, name: "Senior Living" },
   { icon: Wind, name: "Pulmonary" },
+  { icon: UserCog, name: "Geriatrics" },
+  { icon: Droplets, name: "Nephrology" },
 ];
 
 const testimonials = [

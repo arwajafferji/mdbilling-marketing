@@ -31,13 +31,22 @@ Use this decision tree based on what they submitted:
 |---|---|---|---|
 | First-pass < 90% | Unworked denials aging out | Under-coding E/M levels | Eligibility gaps |
 | "Denials" in pain point | Unworked denials aging out | Modifier 25 / bundling | Eligibility gaps |
-| "Slow AR" in pain point | AR aging past timely filing | Under-coding | Secondary payer COB errors |
+| "Slow AR" / "slow payments" in pain point | **Aged AR without follow-up** | Under-coding | Secondary payer COB errors |
+| "Cash flow" / "collections" in pain point | **Aged AR without follow-up** | Under-coding | Patient responsibility collection gaps |
 | "Credentialing" in pain point | Out-of-network billing from lapsed credentialing | Under-coding | Payer enrollment delays |
 | New EMR / migration | Charge capture misses during transition | Coding template errors | Eligibility 270/271 misconfig |
 | "Staff turnover" | Workflow documentation gaps → denial rework | Under-coding from new staff | Missed time-based billing |
 | No stated pain point | Unworked denials aging out | Under-coding E/M levels | Eligibility gaps |
 
 Pick the three that best match. You can always swap in a different leak you've seen if it's a closer fit to their specialty/EMR.
+
+**When to use the AR follow-up leak (from the "Alternate Leak" section of the template):** Swap it in place of Leak #1 (denials aging) when:
+
+- The pain point mentions slow payments, cash flow, days-in-AR, or aged claims
+- Their first-pass rate is actually decent (>92%) — which rules out a denial problem and points at an AR follow-up problem instead
+- They specifically say their denials are being worked but the money still isn't coming in
+
+Denials aging out and aged AR without follow-up are related but different leaks — don't use both in the same report, it looks repetitive.
 
 ### 5. Specialty block for Leak #2 — 3 min
 Paste the specialty-specific under-coding notes from the template's inline comments into Leak #2. Keep it to 2–3 bullet points. Don't over-explain — you want them curious, not buried.
@@ -56,6 +65,8 @@ Where avg_reimbursement defaults:
 - Rehab: $90
 - Senior Living / SNF: $105
 - Pulmonary: $140
+- Geriatrics: $115
+- Nephrology: $165
 
 If they selected "Not sure" for claim volume, use 750 as a midpoint placeholder.
 
@@ -66,6 +77,15 @@ Estimate established-patient visits as 70% of claim volume.
 
 **Leak #3 estimate:**
 `monthly_claim_volume × 0.06 × avg_reimbursement × 0.5 × 12`
+
+**AR follow-up leak estimate (if swapped in):**
+`monthly_claim_volume × 0.10 × avg_reimbursement × 0.40 × 12`
+
+Where:
+- `0.10` = ~10% of claims end up stuck in aged AR without systematic follow-up
+- `0.40` = ~40% of those are recoverable if someone actually calls the payer / rebills / escalates
+
+Example: 1,000 claims/month at $110 avg → 1000 × 0.10 × $110 × 0.40 × 12 = $52,800/year.
 
 **Round all numbers to the nearest $500** so it feels like an estimate, not a fabricated precise figure.
 

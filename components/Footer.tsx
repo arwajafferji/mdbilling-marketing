@@ -43,6 +43,8 @@ export default function Footer() {
             <li>Rehabilitation</li>
             <li>Senior Living</li>
             <li>Pulmonary</li>
+            <li>Geriatrics</li>
+            <li>Nephrology</li>
           </ul>
         </div>
 

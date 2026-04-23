@@ -461,9 +461,16 @@ export default function RLACalculator() {
               <div className="flex items-start justify-between gap-4">
                 <div className="text-xs text-navy-700">
                   <span className="font-semibold uppercase tracking-wide text-navy-500">
-                    Suggested
+                    Leak selection — auto
                   </span>
-                  <p className="mt-1">{decision.reasoning}</p>
+                  <p className="mt-1 font-semibold text-navy-900">
+                    {effectiveUseArLeak
+                      ? "Using AR leak in place of denial leak."
+                      : "Using default 3 leaks: denials, under-coding, eligibility."}
+                  </p>
+                  <p className="mt-1 italic text-navy-600">
+                    {decision.reasoning}
+                  </p>
                 </div>
                 <label className="flex shrink-0 cursor-pointer items-center gap-2 text-xs font-semibold text-navy-800">
                   <input
@@ -475,9 +482,13 @@ export default function RLACalculator() {
                     }}
                     className="h-4 w-4"
                   />
-                  Use AR leak
+                  Override: use AR leak
                 </label>
               </div>
+              <p className="mt-3 border-t border-navy-100 pt-2 text-[11px] text-navy-500">
+                No action needed — the calculator picks a leak path from the
+                pain point. Use the checkbox only if the auto-pick is wrong.
+              </p>
             </div>
           </section>
 

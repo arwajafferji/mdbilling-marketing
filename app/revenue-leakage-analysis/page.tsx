@@ -4,6 +4,7 @@ import { CheckCircle2 } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import SpecialtyField from "./SpecialtyField";
+import EmrField from "./EmrField";
 
 export const metadata: Metadata = {
   title: "Free Revenue Leakage Analysis",
@@ -111,9 +112,7 @@ export default function RevenueLeakagePage() {
                     "Other",
                   ]}
                 />
-                <Select
-                  label="Current EMR / PM system"
-                  name="emr"
+                <EmrField
                   options={[
                     "eClinicalWorks",
                     "Athenahealth",
@@ -123,6 +122,7 @@ export default function RevenueLeakagePage() {
                     "AdvancedMD",
                     "Kareo / Tebra",
                     "DrChrono",
+                    "Medisoft",
                     "Other / Not sure",
                   ]}
                 />

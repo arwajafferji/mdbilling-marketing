@@ -8,6 +8,7 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: "*",
         allow: "/",
+        disallow: ["/rla-calculator", "/rla-calculator/"],
       },
     ],
     sitemap: `${BASE_URL}/sitemap.xml`,

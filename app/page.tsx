@@ -143,7 +143,7 @@ export default function Home() {
               No obligation. 1-page report delivered within 3 business days.
             </p>
           </div>
-          <div className="hidden lg:block">
+          <div className="hidden lg:block lg:self-center">
             {/* Decorative stats card */}
             <div className="grid grid-cols-2 gap-4">
               {stats.slice(0, 4).map((s) => (

@@ -1,3 +1,4 @@
+import type { ReactNode } from "react";
 import Link from "next/link";
 import {
   ArrowRight,
@@ -20,9 +21,19 @@ import {
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
-const stats = [
+type Stat = { value: ReactNode; label: string };
+
+const stats: Stat[] = [
   { value: "95%", label: "First-pass claim acceptance" },
-  { value: "24–48 hr", label: "Claim submission turnaround" },
+  {
+    value: (
+      <span className="whitespace-nowrap">
+        24–48
+        <span className="ml-1 text-xl font-medium opacity-80">hr</span>
+      </span>
+    ),
+    label: "Claim submission turnaround",
+  },
   { value: "20%", label: "Average increase in collections" },
   { value: "25+", label: "Practices served" },
   { value: "20+", label: "Years of experience" },

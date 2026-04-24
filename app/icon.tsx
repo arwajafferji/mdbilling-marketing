@@ -15,25 +15,14 @@ export default function Icon() {
           justifyContent: "center",
           background: "#C91F1F",
           borderRadius: "50%",
+          color: "white",
+          fontSize: 16,
+          fontWeight: 800,
+          letterSpacing: "-0.03em",
+          fontFamily: "system-ui, -apple-system, Segoe UI, sans-serif",
         }}
       >
-        {/* EKG-style waveform to match the brand logo */}
-        <svg
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M2 14 L6 14 L8 8 L10 18 L12 5 L14 16 L16 14 L22 14"
-            stroke="white"
-            strokeWidth="2.5"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            fill="none"
-          />
-        </svg>
+        MD
       </div>
     ),
     { ...size },

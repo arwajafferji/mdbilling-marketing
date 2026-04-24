@@ -73,6 +73,10 @@ const specialties = [
   { icon: Droplets, name: "Nephrology" },
 ];
 
+// Flip to `true` once real testimonials are collected. Hides the whole
+// testimonials section from the homepage while we gather real quotes.
+const SHOW_TESTIMONIALS = false;
+
 const testimonials = [
   {
     quote:
@@ -273,34 +277,36 @@ export default function Home() {
       </section>
 
       {/* TESTIMONIALS */}
-      <section className="bg-navy-800 py-20 text-white">
-        <div className="container-xl">
-          <div className="max-w-2xl">
-            <p className="text-sm font-semibold uppercase tracking-wide text-crimson">
-              What our clients say
-            </p>
-            <h2 className="mt-3 text-3xl md:text-4xl">
-              Trusted by independent physicians across Texas.
-            </h2>
+      {SHOW_TESTIMONIALS && (
+        <section className="bg-navy-800 py-20 text-white">
+          <div className="container-xl">
+            <div className="max-w-2xl">
+              <p className="text-sm font-semibold uppercase tracking-wide text-crimson">
+                What our clients say
+              </p>
+              <h2 className="mt-3 text-3xl md:text-4xl">
+                Trusted by independent physicians across Texas.
+              </h2>
+            </div>
+            <div className="mt-12 grid gap-6 md:grid-cols-3">
+              {testimonials.map((t, i) => (
+                <figure
+                  key={i}
+                  className="rounded-xl border border-white/10 bg-white/5 p-6"
+                >
+                  <blockquote className="text-navy-100">
+                    &ldquo;{t.quote}&rdquo;
+                  </blockquote>
+                  <figcaption className="mt-4">
+                    <div className="font-semibold text-white">{t.name}</div>
+                    <div className="text-sm text-navy-200">{t.role}</div>
+                  </figcaption>
+                </figure>
+              ))}
+            </div>
           </div>
-          <div className="mt-12 grid gap-6 md:grid-cols-3">
-            {testimonials.map((t, i) => (
-              <figure
-                key={i}
-                className="rounded-xl border border-white/10 bg-white/5 p-6"
-              >
-                <blockquote className="text-navy-100">
-                  &ldquo;{t.quote}&rdquo;
-                </blockquote>
-                <figcaption className="mt-4">
-                  <div className="font-semibold text-white">{t.name}</div>
-                  <div className="text-sm text-navy-200">{t.role}</div>
-                </figcaption>
-              </figure>
-            ))}
-          </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       {/* BIG CTA */}
       <section className="py-20">

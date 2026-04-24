@@ -22,8 +22,8 @@ import Footer from "@/components/Footer";
 
 const stats = [
   { value: "95%", label: "First-pass claim acceptance" },
-  { value: "5-day", label: "Claim submission turnaround" },
-  { value: "15%", label: "Average increase in collections" },
+  { value: "24–48 hr", label: "Claim submission turnaround" },
+  { value: "20%", label: "Average increase in collections" },
   { value: "25+", label: "Practices served" },
   { value: "20+", label: "Years of experience" },
 ];
@@ -116,7 +116,7 @@ export default function Home() {
             <p className="mt-6 max-w-xl text-lg text-navy-100">
               Independent practices trust MD Billing Experts to run their
               revenue cycle end-to-end — so their team can focus on patients,
-              not paperwork. 95% first-pass acceptance. 15% average lift in
+              not paperwork. 95% first-pass acceptance. 20% average lift in
               collections. Twenty years of experience.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">

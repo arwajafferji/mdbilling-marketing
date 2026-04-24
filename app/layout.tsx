@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     template: "%s | MD Billing Experts",
   },
   description:
-    "Houston-based medical billing and revenue cycle management for independent practices. 95% first-pass acceptance, 5-day claim turnaround, 20+ years of experience. Free Revenue Leakage Analysis.",
+    "Houston-based medical billing and revenue cycle management for independent practices. 95% first-pass acceptance, 24–48 hour claim turnaround, 20+ years of experience. Free Revenue Leakage Analysis.",
   keywords: [
     "medical billing Houston",
     "medical billing services Texas",
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     siteName: "MD Billing Experts",
     title: "MD Billing Experts | Medical Billing Services in Houston, TX",
     description:
-      "95% first-pass acceptance. 5-day claim turnaround. 20+ years serving Texas practices.",
+      "95% first-pass acceptance. 24–48 hour claim turnaround. 20+ years serving Texas practices.",
   },
   robots: { index: true, follow: true },
 };

@@ -48,7 +48,7 @@ Test locally by submitting the form — you should receive an email.
 Search for the string `Placeholder` in the codebase — everything marked that way is waiting on real content:
 
 - [ ] Three testimonials (Dr. Travis Hird + two others). Edit `app/page.tsx` → `testimonials` array.
-- [ ] Final stats confirmed (currently: 95% first-pass, 5-day turnaround, 15% collections lift, 25+ practices, 20+ years).
+- [ ] Final stats confirmed (currently: 95% first-pass, 24–48 hour turnaround, 20% collections lift, 25+ practices, 20+ years).
 - [ ] Logo mark: currently a placeholder red circle with "MD" text — replace with the real Billing Experts logo SVG/PNG in `components/Header.tsx` and `components/Footer.tsx`.
 - [ ] Open Graph social-share image at `/og.png` (1200x630) — referenced in `app/layout.tsx` metadata.
 - [ ] Favicon at `/favicon.ico`.

@@ -96,8 +96,8 @@ export default function OpengraphImage() {
               maxWidth: "900px",
             }}
           >
-            Medical billing & revenue cycle management for Houston&apos;s
-            independent practices. 95% first-pass acceptance. 5-day claim
+            Medical billing & revenue cycle management for Texas
+            independent practices. 95% first-pass acceptance. 24–48 hour claim
             turnaround.
           </div>
         </div>

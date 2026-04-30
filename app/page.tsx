@@ -20,6 +20,8 @@ import {
 } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import HomepageCalculator from "@/components/HomepageCalculator";
+import EmrLogoBar from "@/components/EmrLogoBar";
 
 type Stat = { value: ReactNode; label: string };
 
@@ -44,44 +46,50 @@ const services = [
     icon: BarChart3,
     title: "Revenue Cycle Management",
     desc: "End-to-end RCM: eligibility, charge capture, claims, posting, AR follow-up, denials, and reporting.",
+    slug: "revenue-cycle-management",
   },
   {
     icon: FileText,
     title: "Medical Coding",
     desc: "Certified coders. ICD-10, CPT, and HCPCS coding with compliance review to reduce denials.",
+    slug: "medical-coding",
   },
   {
     icon: ClipboardCheck,
     title: "Credentialing & Enrollment",
     desc: "Payer enrollment, re-credentialing, CAQH maintenance, and Medicare/Medicaid applications.",
+    slug: "credentialing",
   },
   {
     icon: CreditCard,
     title: "AR & Denial Management",
     desc: "Aggressive AR follow-up and denial recovery to convert unpaid claims into collected revenue.",
+    slug: "ar-denial-management",
   },
   {
     icon: ShieldCheck,
     title: "Eligibility Verification",
     desc: "Real-time eligibility and benefits verification before the visit to eliminate denials at the source.",
+    slug: "eligibility-verification",
   },
   {
     icon: CalendarCheck,
     title: "Patient Billing & Statements",
     desc: "Patient statements, collections, and courteous support that protects your patient relationships.",
+    slug: "patient-billing",
   },
 ];
 
 const specialties = [
-  { icon: Stethoscope, name: "Internal Medicine" },
-  { icon: Baby, name: "Pediatrics" },
-  { icon: HeartPulse, name: "Cardiology" },
-  { icon: Hospital, name: "Hospitalist" },
-  { icon: Activity, name: "Rehabilitation" },
-  { icon: Users, name: "Senior Living" },
-  { icon: Wind, name: "Pulmonary" },
-  { icon: UserCog, name: "Geriatrics" },
-  { icon: Droplets, name: "Nephrology" },
+  { icon: Stethoscope, name: "Internal Medicine", slug: "internal-medicine" },
+  { icon: Baby, name: "Pediatrics", slug: "pediatrics" },
+  { icon: HeartPulse, name: "Cardiology", slug: "cardiology" },
+  { icon: Hospital, name: "Hospitalist", slug: "hospitalist" },
+  { icon: Activity, name: "Rehabilitation", slug: "rehabilitation" },
+  { icon: Users, name: "Senior Living", slug: "senior-living" },
+  { icon: Wind, name: "Pulmonary", slug: "pulmonary" },
+  { icon: UserCog, name: "Geriatrics", slug: "geriatrics" },
+  { icon: Droplets, name: "Nephrology", slug: "nephrology" },
 ];
 
 // Flip to `true` once real testimonials are collected. Hides the whole
@@ -178,6 +186,12 @@ export default function Home() {
         </div>
       </section>
 
+      {/* PUBLIC LEAKAGE CALCULATOR */}
+      <HomepageCalculator />
+
+      {/* EMR / PM INTEGRATION LOGO BAR */}
+      <EmrLogoBar />
+
       {/* SERVICES */}
       <section id="services" className="py-20">
         <div className="container-xl">
@@ -197,17 +211,32 @@ export default function Home() {
 
           <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {services.map((s) => (
-              <div
+              <Link
                 key={s.title}
-                className="rounded-xl border border-navy-100 bg-white p-6 transition hover:border-navy-300 hover:shadow-md"
+                href={`/services/${s.slug}`}
+                className="group rounded-xl border border-navy-100 bg-white p-6 transition hover:border-navy-300 hover:shadow-md"
               >
                 <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-crimson/10 text-crimson">
                   <s.icon className="h-5 w-5" />
                 </div>
                 <h3 className="mt-4 text-lg text-navy-800">{s.title}</h3>
                 <p className="mt-2 text-sm text-navy-600">{s.desc}</p>
-              </div>
+                <span className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-crimson">
+                  Learn more
+                  <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
+                </span>
+              </Link>
             ))}
+          </div>
+
+          <div className="mt-10 text-center">
+            <Link
+              href="/services"
+              className="inline-flex items-center gap-2 text-sm font-semibold text-navy-700 hover:text-navy-900"
+            >
+              View all services
+              <ArrowRight className="h-4 w-4" />
+            </Link>
           </div>
         </div>
       </section>
@@ -230,16 +259,29 @@ export default function Home() {
 
           <div className="mt-12 grid gap-4 md:grid-cols-3 lg:grid-cols-4">
             {specialties.map((sp) => (
-              <div
+              <Link
                 key={sp.name}
-                className="flex items-center gap-3 rounded-xl border border-navy-100 bg-white p-5"
+                href={`/specialties/${sp.slug}`}
+                className="group flex items-center gap-3 rounded-xl border border-navy-100 bg-white p-5 transition hover:border-navy-300 hover:shadow-md"
               >
                 <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-navy-800 text-white">
                   <sp.icon className="h-5 w-5" />
                 </div>
-                <span className="font-medium text-navy-800">{sp.name}</span>
-              </div>
+                <span className="font-medium text-navy-800 group-hover:text-navy-900">
+                  {sp.name}
+                </span>
+              </Link>
             ))}
+          </div>
+
+          <div className="mt-10 text-center">
+            <Link
+              href="/specialties"
+              className="inline-flex items-center gap-2 text-sm font-semibold text-navy-700 hover:text-navy-900"
+            >
+              View all specialties
+              <ArrowRight className="h-4 w-4" />
+            </Link>
           </div>
         </div>
       </section>

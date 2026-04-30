@@ -23,6 +23,7 @@ const config: Config = {
         crimson: {
           DEFAULT: "#C91F1F",
           hover:   "#A81818",
+          light:   "#F4A6A6",
         },
       },
       fontFamily: {

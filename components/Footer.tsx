@@ -25,31 +25,40 @@ export default function Footer() {
         <div>
           <h4 className="text-white">Services</h4>
           <ul className="mt-4 space-y-2 text-sm">
-            <li><Link href="/#services" className="hover:text-white">Revenue Cycle Management</Link></li>
-            <li><Link href="/#services" className="hover:text-white">Medical Coding</Link></li>
-            <li><Link href="/#services" className="hover:text-white">Credentialing &amp; Enrollment</Link></li>
-            <li><Link href="/#services" className="hover:text-white">AR &amp; Denial Management</Link></li>
-            <li><Link href="/#services" className="hover:text-white">Eligibility Verification</Link></li>
+            <li><Link href="/services/revenue-cycle-management" className="hover:text-white">Revenue Cycle Management</Link></li>
+            <li><Link href="/services/medical-coding" className="hover:text-white">Medical Coding</Link></li>
+            <li><Link href="/services/credentialing" className="hover:text-white">Credentialing &amp; Enrollment</Link></li>
+            <li><Link href="/services/ar-denial-management" className="hover:text-white">AR &amp; Denial Management</Link></li>
+            <li><Link href="/services/eligibility-verification" className="hover:text-white">Eligibility Verification</Link></li>
+            <li><Link href="/services/patient-billing" className="hover:text-white">Patient Billing</Link></li>
+            <li><Link href="/services" className="hover:text-white font-semibold">All services →</Link></li>
           </ul>
         </div>
 
         <div>
           <h4 className="text-white">Specialties</h4>
           <ul className="mt-4 space-y-2 text-sm">
-            <li>Internal Medicine</li>
-            <li>Pediatrics</li>
-            <li>Cardiology</li>
-            <li>Hospitalist</li>
-            <li>Rehabilitation</li>
-            <li>Senior Living</li>
-            <li>Pulmonary</li>
-            <li>Geriatrics</li>
-            <li>Nephrology</li>
+            <li><Link href="/specialties/internal-medicine" className="hover:text-white">Internal Medicine</Link></li>
+            <li><Link href="/specialties/pediatrics" className="hover:text-white">Pediatrics</Link></li>
+            <li><Link href="/specialties/cardiology" className="hover:text-white">Cardiology</Link></li>
+            <li><Link href="/specialties/hospitalist" className="hover:text-white">Hospitalist</Link></li>
+            <li><Link href="/specialties/rehabilitation" className="hover:text-white">Rehabilitation</Link></li>
+            <li><Link href="/specialties/senior-living" className="hover:text-white">Senior Living</Link></li>
+            <li><Link href="/specialties/pulmonary" className="hover:text-white">Pulmonary</Link></li>
+            <li><Link href="/specialties/geriatrics" className="hover:text-white">Geriatrics</Link></li>
+            <li><Link href="/specialties/nephrology" className="hover:text-white">Nephrology</Link></li>
           </ul>
         </div>
 
         <div>
-          <h4 className="text-white">Contact</h4>
+          <h4 className="text-white">Company</h4>
+          <ul className="mt-4 space-y-2 text-sm">
+            <li><Link href="/process" className="hover:text-white">Our Process</Link></li>
+            <li><Link href="/faq" className="hover:text-white">FAQ</Link></li>
+            <li><Link href="/revenue-leakage-analysis" className="hover:text-white">Free Revenue Audit</Link></li>
+          </ul>
+
+          <h4 className="mt-8 text-white">Contact</h4>
           <ul className="mt-4 space-y-3 text-sm">
             <li className="flex items-start gap-2">
               <Phone className="mt-0.5 h-4 w-4 shrink-0" />

@@ -15,16 +15,14 @@ export default function Header() {
   return (
     <header className="sticky top-0 z-40 border-b border-navy-100 bg-white/90 backdrop-blur">
       <div className="container-xl flex h-28 items-center justify-between">
-        <Link href="/" className="flex items-center" aria-label="MD Billing Experts — Home">
-          <Image
-            src="/logo.png"
-            alt="MD Billing Experts"
-            width={1000}
-            height={300}
-            priority
-            className="h-[230px] w-auto"
-          />
-        </Link>
+        <Image
+          src="/logo.png"
+          alt="MD Billing Experts"
+          width={1000}
+          height={300}
+          priority
+          className="h-[230px] w-auto"
+        />
 
         <nav className="hidden items-center gap-8 md:flex">
           {nav.map((n) => (

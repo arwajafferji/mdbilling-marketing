@@ -47,10 +47,10 @@ export default function Header() {
           <Image
             src="/logo.png"
             alt="MD Billing Experts"
-            width={1000}
-            height={300}
+            width={767}
+            height={230}
             priority
-            className="h-[230px] w-auto"
+            style={{ height: 230, width: "auto" }}
           />
         </Link>
 

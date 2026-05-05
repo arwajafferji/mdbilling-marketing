@@ -115,7 +115,7 @@ const jsonLd = {
       // here as they come online.
       sameAs: [
         "https://share.google/46U90uVuiCKg85ene", // Google Business Profile
-        // "https://www.linkedin.com/company/md-billing-experts",
+        "https://www.linkedin.com/company/md-billing-experts/",
         // "https://www.bbb.org/us/tx/houston/profile/...",
       ],
     },

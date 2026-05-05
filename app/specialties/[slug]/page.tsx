@@ -42,6 +42,8 @@ export async function generateMetadata({
   };
 }
 
+const SITE_URL = "https://mdbillinghouston.com";
+
 export default async function SpecialtyPage({
   params,
 }: {
@@ -51,9 +53,64 @@ export default async function SpecialtyPage({
   const specialty = getSpecialtyBySlug(slug);
   if (!specialty) notFound();
 
+  // Service schema scoped to this specialty — helps AI engines map queries
+  // like "cardiology billing services Houston" to this exact page.
+  const specialtyServiceJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    serviceType: `${specialty.name} medical billing`,
+    name: `${specialty.name} Medical Billing Services`,
+    description: specialty.metaDescription,
+    url: `${SITE_URL}/specialties/${specialty.slug}`,
+    provider: { "@id": `${SITE_URL}/#organization` },
+    areaServed: [
+      { "@type": "State", name: "Texas" },
+      { "@type": "City", name: "Houston" },
+    ],
+    audience: {
+      "@type": "MedicalAudience",
+      audienceType: `${specialty.name} physicians and practices`,
+    },
+  };
+
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: SITE_URL,
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Specialties",
+        item: `${SITE_URL}/specialties`,
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: `${specialty.name} Billing`,
+        item: `${SITE_URL}/specialties/${specialty.slug}`,
+      },
+    ],
+  };
+
   return (
     <>
       <Header />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(specialtyServiceJsonLd),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
       <main>
         {/* Hero */}
         <section className="relative overflow-hidden bg-gradient-to-br from-navy-900 via-navy-800 to-navy-700 py-20 text-white">

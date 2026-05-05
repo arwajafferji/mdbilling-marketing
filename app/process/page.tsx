@@ -130,10 +130,33 @@ const principles = [
   },
 ];
 
+const breadcrumbJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    {
+      "@type": "ListItem",
+      position: 1,
+      name: "Home",
+      item: "https://mdbillinghouston.com",
+    },
+    {
+      "@type": "ListItem",
+      position: 2,
+      name: "Our Process",
+      item: "https://mdbillinghouston.com/process",
+    },
+  ],
+};
+
 export default function ProcessPage() {
   return (
     <>
       <Header />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
       <main>
         {/* Hero */}
         <section className="bg-gradient-to-br from-navy-900 via-navy-800 to-navy-700 py-20 text-white">

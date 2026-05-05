@@ -13,10 +13,50 @@ export const metadata: Metadata = {
   alternates: { canonical: "/specialties" },
 };
 
+const breadcrumbJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    {
+      "@type": "ListItem",
+      position: 1,
+      name: "Home",
+      item: "https://mdbillinghouston.com",
+    },
+    {
+      "@type": "ListItem",
+      position: 2,
+      name: "Specialties",
+      item: "https://mdbillinghouston.com/specialties",
+    },
+  ],
+};
+
+// ItemList schema — helps Google understand this is a curated list of
+// specialty offerings linked to detail pages.
+const itemListJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  itemListElement: specialties.map((s, i) => ({
+    "@type": "ListItem",
+    position: i + 1,
+    url: `https://mdbillinghouston.com/specialties/${s.slug}`,
+    name: `${s.name} Medical Billing`,
+  })),
+};
+
 export default function SpecialtiesIndexPage() {
   return (
     <>
       <Header />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListJsonLd) }}
+      />
       <main>
         {/* Hero */}
         <section className="bg-gradient-to-br from-navy-900 via-navy-800 to-navy-700 py-20 text-white">

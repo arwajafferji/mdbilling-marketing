@@ -61,6 +61,8 @@ export async function generateMetadata({
   };
 }
 
+const SITE_URL = "https://mdbillinghouston.com";
+
 export default async function ServicePage({
   params,
 }: {
@@ -72,9 +74,86 @@ export default async function ServicePage({
 
   const Icon = ICONS[service.iconName];
 
+  // Service schema — declares this as a structured Service offered by the
+  // organization, so AI engines and Google can map service queries here.
+  const serviceJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    serviceType: service.title,
+    name: service.title,
+    description: service.metaDescription,
+    url: `${SITE_URL}/services/${service.slug}`,
+    provider: { "@id": `${SITE_URL}/#organization` },
+    areaServed: [
+      { "@type": "State", name: "Texas" },
+      { "@type": "City", name: "Houston" },
+    ],
+    audience: {
+      "@type": "BusinessAudience",
+      audienceType: "Independent physician practices",
+    },
+  };
+
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: SITE_URL,
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Services",
+        item: `${SITE_URL}/services`,
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: service.title,
+        item: `${SITE_URL}/services/${service.slug}`,
+      },
+    ],
+  };
+
+  // Per-service FAQ schema. Each service page has its own FAQ items —
+  // expose them as FAQPage so they can be pulled into AI search answers.
+  const faqJsonLd =
+    service.faq.length > 0
+      ? {
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          mainEntity: service.faq.map((item) => ({
+            "@type": "Question",
+            name: item.q,
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: item.a,
+            },
+          })),
+        }
+      : null;
+
   return (
     <>
       <Header />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
+      {faqJsonLd && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+        />
+      )}
       <main>
         {/* Hero */}
         <section className="relative overflow-hidden bg-gradient-to-br from-navy-900 via-navy-800 to-navy-700 py-20 text-white">

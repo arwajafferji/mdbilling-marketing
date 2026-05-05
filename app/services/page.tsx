@@ -30,10 +30,48 @@ export const metadata: Metadata = {
   alternates: { canonical: "/services" },
 };
 
+const breadcrumbJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    {
+      "@type": "ListItem",
+      position: 1,
+      name: "Home",
+      item: "https://mdbillinghouston.com",
+    },
+    {
+      "@type": "ListItem",
+      position: 2,
+      name: "Services",
+      item: "https://mdbillinghouston.com/services",
+    },
+  ],
+};
+
+const itemListJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  itemListElement: services.map((s, i) => ({
+    "@type": "ListItem",
+    position: i + 1,
+    url: `https://mdbillinghouston.com/services/${s.slug}`,
+    name: s.title,
+  })),
+};
+
 export default function ServicesIndexPage() {
   return (
     <>
       <Header />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListJsonLd) }}
+      />
       <main>
         {/* Hero */}
         <section className="bg-gradient-to-br from-navy-900 via-navy-800 to-navy-700 py-20 text-white">

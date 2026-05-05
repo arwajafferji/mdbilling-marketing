@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { services } from "@/data/services";
 import { specialties } from "@/data/specialties";
+import { serviceAreas } from "@/data/serviceAreas";
 
 const BASE_URL = "https://mdbillinghouston.com";
 
@@ -19,6 +20,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified,
       changeFrequency: "monthly",
       priority: 0.9,
+    },
+    {
+      url: `${BASE_URL}/houston`,
+      lastModified,
+      changeFrequency: "monthly",
+      priority: 0.9,
+    },
+    {
+      url: `${BASE_URL}/service-areas`,
+      lastModified,
+      changeFrequency: "monthly",
+      priority: 0.8,
     },
     {
       url: `${BASE_URL}/services`,
@@ -60,5 +73,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
-  return [...staticRoutes, ...serviceRoutes, ...specialtyRoutes];
+  const serviceAreaRoutes: MetadataRoute.Sitemap = serviceAreas.map((s) => ({
+    url: `${BASE_URL}/service-areas/${s.slug}`,
+    lastModified,
+    changeFrequency: "monthly",
+    priority: 0.7,
+  }));
+
+  return [
+    ...staticRoutes,
+    ...serviceRoutes,
+    ...specialtyRoutes,
+    ...serviceAreaRoutes,
+  ];
 }

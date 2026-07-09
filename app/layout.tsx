@@ -131,17 +131,23 @@ const jsonLd = {
       priceRange: "$$",
       currenciesAccepted: "USD",
       paymentAccepted: ["Invoice", "ACH", "Wire Transfer"],
+      // Service-area business — registered address is in Cypress, TX
+      // (Greater Houston metro, Harris County). No street address shown
+      // because it's not a walk-in location. Coordinates approximate the
+      // Cypress, TX area to keep schema consistent with the real GBP
+      // record — mismatches between site and GBP trigger "deceptive
+      // content" suspensions.
       address: {
         "@type": "PostalAddress",
-        addressLocality: "Houston",
+        addressLocality: "Cypress",
         addressRegion: "TX",
-        postalCode: "77002",
+        postalCode: "77429",
         addressCountry: "US",
       },
       geo: {
         "@type": "GeoCoordinates",
-        latitude: 29.7604,
-        longitude: -95.3698,
+        latitude: 29.9691,
+        longitude: -95.6972,
       },
       // Service-area business — serves Texas + listed metros, no walk-in office.
       areaServed: [
@@ -273,6 +279,33 @@ const jsonLd = {
         "Medical billing and revenue cycle management services for independent physician practices in Houston and across Texas. Specialties include internal medicine, pediatrics, cardiology, hospitalist, rehabilitation, senior living, pulmonary, geriatrics, and nephrology.",
       slogan:
         "Houston-based medical billing for independent practices that want to keep more of what they earn.",
+      // Real client testimonials shown on the homepage. No numeric star
+      // ratings are included because clients provided written quotes only —
+      // inventing ratingValue would violate Google's review guidelines and
+      // risk a "deceptive content" penalty, so aggregateRating is omitted.
+      review: [
+        {
+          "@type": "Review",
+          author: { "@type": "Person", name: "Dr. Rajesh Rethnam" },
+          reviewBody:
+            "MD Billing has handled my billing since the day I opened my practice — going on 18 years now. They know pulmonary and sleep coding inside out, my claims go out clean, and I've never had to worry about the money side of my practice.",
+          itemReviewed: { "@id": `${SITE_URL}/#localbusiness` },
+        },
+        {
+          "@type": "Review",
+          author: { "@type": "Person", name: "Travis W. Hird" },
+          reviewBody:
+            "MD Billing has handled billing for me and my nurse practitioner across all of our rehab facilities for the past 4 years. Claims go out clean, nothing gets lost between locations, and I can focus on patient care instead of chasing payments.",
+          itemReviewed: { "@id": `${SITE_URL}/#localbusiness` },
+        },
+        {
+          "@type": "Review",
+          author: { "@type": "Person", name: "Dr. Balbir Chahal" },
+          reviewBody:
+            "For 15 years, MD Billing has handled everything — my clinic, my hospital work, and my nursing home visits. Nothing slips through the cracks, my claims go out clean, and I've never had to think twice about who's handling my revenue.",
+          itemReviewed: { "@id": `${SITE_URL}/#localbusiness` },
+        },
+      ],
     },
     {
       "@type": "WebSite",

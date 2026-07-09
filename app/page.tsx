@@ -92,28 +92,26 @@ const specialties = [
   { icon: Droplets, name: "Nephrology", slug: "nephrology" },
 ];
 
-// Flip to `true` once real testimonials are collected. Hides the whole
-// testimonials section from the homepage while we gather real quotes.
-const SHOW_TESTIMONIALS = false;
+const SHOW_TESTIMONIALS = true;
 
 const testimonials = [
   {
     quote:
-      "Placeholder testimonial — to be replaced with real quote from Dr. Travis Hird about collections improvement and workflow.",
-    name: "Dr. Travis Hird",
-    role: "Practice Name · Specialty",
+      "MD Billing has handled my billing since the day I opened my practice — going on 18 years now. When you trust the same team with your revenue for almost two decades, that says it all. They know pulmonary and sleep coding inside out, my claims go out clean, and I've genuinely never had to worry about the money side of my practice. I built the practice; they made sure I got paid for it.",
+    name: "Dr. Rajesh Rethnam",
+    role: "Pulmonary, Obesity & Sleep Medicine · Houston, TX",
   },
   {
     quote:
-      "Placeholder testimonial — second real client quote highlighting denial recovery or AR turnaround.",
-    name: "Client Name",
-    role: "Practice · Specialty",
+      "MD Billing has handled billing for me and my nurse practitioner across all of our rehab facilities for the past 4 years. Facility-based billing has a lot of moving parts, and they stay on top of every one of them. Claims go out clean, nothing gets lost between locations, and I can focus on patient care instead of chasing payments. They've earned my trust, and they keep earning it.",
+    name: "Travis W. Hird",
+    role: "Physical Medicine / Rehab · Shenandoah, TX",
   },
   {
     quote:
-      "Placeholder testimonial — third real client quote focused on responsiveness and service quality.",
-    name: "Client Name",
-    role: "Practice · Specialty",
+      "For 15 years, MD Billing has handled everything — my clinic, my hospital work, and my nursing home visits. Managing billing across three different settings is complicated, and they make it look effortless. Nothing slips through the cracks, my claims go out clean, and I've never had to think twice about who's handling my revenue. That kind of trust is earned, and they've earned it every single year.",
+    name: "Dr. Balbir Chahal",
+    role: "Internal Medicine · Tomball, TX",
   },
 ];
 

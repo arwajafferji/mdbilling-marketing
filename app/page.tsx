@@ -18,6 +18,7 @@ import {
   UserCog,
   Droplets,
 } from "lucide-react";
+import TestimonialCarousel from "@/components/TestimonialCarousel";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import HomepageCalculator from "@/components/HomepageCalculator";
@@ -112,6 +113,18 @@ const testimonials = [
       "For 15 years, MD Billing has handled everything — my clinic, my hospital work, and my nursing home visits. Managing billing across three different settings is complicated, and they make it look effortless. Nothing slips through the cracks, my claims go out clean, and I've never had to think twice about who's handling my revenue. That kind of trust is earned, and they've earned it every single year.",
     name: "Dr. Balbir Chahal",
     role: "Internal Medicine · Tomball, TX",
+  },
+  {
+    quote:
+      "What sets MD Billing apart is that they actually took the time to learn the details of my pulmonary hospital procedures — the complex ones most billers gloss over or get wrong. Over the past 4 years we've built a real partnership; they ask the right questions, capture every procedure accurately, and it shows in how clean my claims go out. They don't just process billing, they understand my specialty.",
+    name: "Dr. Amit Annaminni",
+    role: "Respiratory Center of North Houston · Houston, TX",
+  },
+  {
+    quote:
+      "I came to MD Billing after a bad experience with a previous biller I couldn't trust with my money. Sixteen years later, they've never once given me a reason to worry — every dollar is accounted for, the reporting is transparent, and I finally sleep at night knowing my revenue is in honest hands.",
+    name: "Dr. Lipsen",
+    role: "Liver, Kidney & Internal Medicine · Houston, TX",
   },
 ];
 
@@ -351,22 +364,7 @@ export default function Home() {
                 Trusted by independent physicians across Texas.
               </h2>
             </div>
-            <div className="mt-12 grid gap-6 md:grid-cols-3">
-              {testimonials.map((t, i) => (
-                <figure
-                  key={i}
-                  className="rounded-xl border border-white/10 bg-white/5 p-6"
-                >
-                  <blockquote className="text-navy-100">
-                    &ldquo;{t.quote}&rdquo;
-                  </blockquote>
-                  <figcaption className="mt-4">
-                    <div className="font-semibold text-white">{t.name}</div>
-                    <div className="text-sm text-navy-200">{t.role}</div>
-                  </figcaption>
-                </figure>
-              ))}
-            </div>
+            <TestimonialCarousel testimonials={testimonials} />
           </div>
         </section>
       )}

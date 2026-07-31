@@ -305,6 +305,20 @@ const jsonLd = {
             "For 15 years, MD Billing has handled everything — my clinic, my hospital work, and my nursing home visits. Nothing slips through the cracks, my claims go out clean, and I've never had to think twice about who's handling my revenue.",
           itemReviewed: { "@id": `${SITE_URL}/#localbusiness` },
         },
+        {
+          "@type": "Review",
+          author: { "@type": "Person", name: "Dr. Amit Annaminni" },
+          reviewBody:
+            "What sets MD Billing apart is that they took the time to learn the details of my pulmonary hospital procedures — the complex ones most billers get wrong. Over 4 years we've built a real partnership; they capture every procedure accurately and it shows in how clean my claims go out.",
+          itemReviewed: { "@id": `${SITE_URL}/#localbusiness` },
+        },
+        {
+          "@type": "Review",
+          author: { "@type": "Person", name: "Dr. Lipsen" },
+          reviewBody:
+            "I came to MD Billing after a bad experience with a previous biller I couldn't trust with my money. Sixteen years later, they've never once given me a reason to worry — every dollar is accounted for, the reporting is transparent, and I finally sleep at night.",
+          itemReviewed: { "@id": `${SITE_URL}/#localbusiness` },
+        },
       ],
     },
     {
